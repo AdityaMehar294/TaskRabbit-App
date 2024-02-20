@@ -1,6 +1,12 @@
-<% @tasks.each do |task| %>
-  <h2><%= link_to task.title, task %></h2>
-  <p><%= task.company %></p>
-<% end %>
+<div class="container">
+  <ul class="list-group">
+    <% @tasks.each do |task| %>
+      <li class="list-group-item mb-3 task-bg">
+        <h2 class="mb-2 text-danger"><%= link_to task.title, task, class: "text-decoration-none text-dark" %></h2>
+        <p class="mb-1"><%= task.company %></p>
+      </li>
+    <% end %>
+  </ul>
+</div>
 
-<%= link_to "New Task", new_task_path %>
+

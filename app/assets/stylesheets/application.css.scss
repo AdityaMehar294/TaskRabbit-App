@@ -17,4 +17,20 @@
  
  @import "bootstrap";
 
+ .form-bg {
+    background-color: #f8f9fa;
+ }
 
+ footer {
+    padding: 20px 0px;
+    text-align: center;
+    color: #0e0d0d;
+    margin-top: 100px;
+  }
+  footer a {
+    color: #050468;
+  }
+
+  .task-bg{
+    background-color: lighten($color: #f4f7d1, $amount: 0);
+  }

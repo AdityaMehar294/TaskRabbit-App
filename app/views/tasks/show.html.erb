@@ -1,7 +1,10 @@
-<h1><%= @task.title  %></h1>
-<p><%= @task.description  %></p>
-<p><%= @task.company %></p>
-
-<%= link_to "Home", root_path%>
-<%= link_to "Edit", edit_task_path(@task)%>
-<%= link_to 'Delete',task_path(@task),data: {turbo_method: 'delete', turbo_confirm: "Are you sure"},class:"btn btn-outline-danger"%>
+<div class="card p-5 m-5">
+  <div class="card-body">
+    <h1 class="card-title mb-5"><%= @task.title %></h1>
+    <p class="card-text"><%= @task.description %></p>
+    <p class="card-text mb-5"><%= @task.company %></p>
+    <%= link_to "Home", root_path, class: "btn btn-outline-primary" %>
+    <%= link_to "Edit", edit_task_path(@task), class: "btn btn-outline-secondary" %>
+    <%= link_to 'Delete', task_path(@task), data: { turbo_method: 'delete', turbo_confirm: "Are you sure" }, class: "btn btn-outline-danger" %>
+  </div>
+</div>

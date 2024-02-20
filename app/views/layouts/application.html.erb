@@ -5,16 +5,43 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <%= favicon_link_tag 'favicon.ico' %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
-
-    <% Category.all.each do |category| %>
-      <%= link_to category.name, tasks_path(category: category.name)%>
-    <% end %>
-    <%= yield %>
+    <header>
+      <nav class="navbar navbar-expand-lg p-4" style="background-color: #00BDAA;">
+        <div class="container-fluid">
+          <%= link_to 'TaskRabbit',root_path,class:"navbar-brand fs-2 mx-5"%>
+            <ul class="navbar-nav float-end ">
+                <li class="nav-item ">
+                  <%= link_to 'New Task', new_task_path, class: 'nav-link active fs-4', 'data-turbo-action': 'replace' %>
+                </li>
+            </ul>
+          </div>
+      </nav>
+    </header>
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
+        <div class="container-fluid">
+          <ul class="navbar-nav d-flex flex-row"> <!-- Use d-flex flex-row here -->
+            <% Category.all.each do |category| %>
+              <li class="nav-item">
+                <%= link_to category.name, tasks_path(category: category.name), class: "nav-link fw-bold" %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <div>
+      <%= yield %>
+    </div>
+    <footer style="background-color: #00BDAA;" class="fixed-bottom p-3">
+      <span>
+      <a href="#"><%= link_to 'TaskRabbit',root_path%></a> &nbsp | &nbsp;<span class="far fa-copyright">&nbsp;&nbsp;</span>2024 All Rights Reserved.</span>
+    </footer>
   </body>
 </html>
