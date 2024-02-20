@@ -1,7 +1,12 @@
 class TasksController < ApplicationController
   before_action :find_task, only: [:show, :edit, :update, :destroy]
   def index
-    @tasks = Task.all.order("created_at DESC")
+    if params[:category].blank?
+      @tasks = Task.all.order("created_at DESC")
+    else
+      @category_id = Category.find_by(name: params[:category]).id
+      @tasks = Task.where(category_id: @category_id).order("created_at DESC")
+    end
   end
 
   def show
@@ -17,7 +22,7 @@ class TasksController < ApplicationController
     if @task.save
       redirect_to @task
     else
-      render "New"
+      render "new"
     end
   end
 
@@ -28,7 +33,7 @@ class TasksController < ApplicationController
     if @task.update(tasks_params)
       redirect_to @task
     else
-      render "Edit"
+      render "edit"
     end
   end
 
@@ -40,7 +45,7 @@ class TasksController < ApplicationController
   private
 
   def tasks_params
-    params.require(:task).permit(:title, :description, :company, :url)
+    params.require(:task).permit(:title, :description, :company, :url, :category_id)
   end
 
   def find_task
